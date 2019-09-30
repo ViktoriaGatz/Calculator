@@ -1,19 +1,7 @@
 /*
     КАЛЬКУЛЯТОР
 
-    // Получить строку
-
-    Разбить на символы и операторы
-
-    Правильная растановка скобок
-
-    Приоретет операторов
-
-    Вычисление
-
-    // С помощью стека
-
-    Также существуют классы-оболочки:
+    Классы-оболочки:
 
     Byte
     Short
@@ -26,16 +14,46 @@
 
 
 import java.util.Scanner;
-
-class Stack {
-}
 */
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Calculator {
+    private String strinG;
+    private int answeR = 0;
 
+    Calculator() {
+        this.setStrinG("0");
+    }
+
+    Calculator(String c) {
+        this.setStrinG(c);
+    }
+    public String getStrinG() {
+        return strinG;
+    }
+
+    public void setStrinG(String c) {
+        this.strinG = new String(c);
+    }
+
+    public int getAnsweR() {
+        String s = new String(strinG);
+        s = s.replaceAll(" ", "");
+        if (MyDelete(s)) {
+            return answeR;
+        }
+        Stack<String> stack = Expression(s);
+        answeR = Rachet(stack);
+        // System.out.println(s + " = " + answer);
+        return answeR;
+    }
+/*
+    public void setStrinG(String c) {
+        this.strinG = new String(c);
+    }
+*/
     static Stack<String> Expression(String str) {
         Stack<String> stack = new Stack<>();
         for (String ss : str.split("\\(")) {
@@ -63,7 +81,7 @@ public class Calculator {
             String ss = new String(stack.peek().toString());
             String s = Pattern1(ss, ".+?\\)"); // Из последнего элемента стека берём только часть до первой ")"
             answer = Pattern2(s);
-            System.out.println(answer);
+            // System.out.println(answer);
             st = ss.replaceFirst(stack.peek().toString(), Integer.toString(answer));
         }
         return answer;
@@ -110,10 +128,10 @@ public class Calculator {
                             answer = first + second;
                             break;
                         case "-":
-                            answer = first - second;
+                            answer = second - first;
                             break;
                         case "/":
-                            answer = first / second;
+                            answer = second / first;
                             break;
                         default:
                             break;
@@ -144,7 +162,7 @@ public class Calculator {
     }
 
     static int Pattern4(String word) { // Должно вернуть последнее число в строке
-        Pattern pattern = Pattern.compile("\\d+");
+        Pattern pattern = Pattern.compile("\\d+"); // "[-]?[0-9]+(.[0-9]+)?"
         Matcher matcher = pattern.matcher(word);
         int start = 0;
         int result = -1234567890;
@@ -155,8 +173,8 @@ public class Calculator {
             start = matcher.end();
         }
         if (result == -1234567890) {
-            System.out.println("ERROR BEFORE SYMBOL");
-            System.exit(0);
+            // System.out.println("ERROR BEFORE SYMBOL");
+            // System.exit(0);
         }
         return result;
     }
@@ -173,32 +191,13 @@ public class Calculator {
             start = matcher.end();
         }
         if (result == -1234567890) {
-            System.out.println("ERROR AFTER SYMBOL");
-            return -1;
+            // System.out.println("ERROR AFTER SYMBOL");
+            // System.exit(0);
         }
         return result;
     }
 
     static boolean equals(String str1, String str2) {
         return str1 == null ? str2 == null : str1.equals(str2);
-    }
-
-    public static void main(String[] args) {
-        System.out.println("CALCULATOR:");
-        String s = new String();
-        do {
-            Scanner str = new Scanner(System.in);
-            s = str.nextLine();
-
-            s = s.replaceAll(" ", "");
-            if (MyDelete(s)) {
-                // System.out.println("ERROR");
-                continue;
-            }
-            Stack<String> stack = Expression(s);
-            Integer answer = Rachet(stack);
-            System.out.println(s + " = " + answer);
-        } while (!s.equals("exit"));
-        System.out.println("EXIT");
     }
 }

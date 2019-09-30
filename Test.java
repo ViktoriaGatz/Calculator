@@ -8,7 +8,7 @@ public class Test {
         int first = -1234567890;
         int second = -1234567890;
         int buff = -1234567890;
-        int answer;
+        int answer = -1234567890;
         Queue<String> queue = new LinkedList<String>(); // Очередь из элементов, между которыми стоит знак
         for (String ss : str.split("\\*")) {
             queue.offer(ss);
@@ -27,7 +27,7 @@ public class Test {
                 first = Pattern5(queue.peek().toString());
                 // Умножение
                 answer = first * second;
-                System.out.println("ANSWER = "Integer.toString(answer));
+                // System.out.println("ANSWER = "Integer.toString(answer));
                 // Замена
                 st = st.replaceFirst(Integer.toString(second)+"\\*"+Integer.toString(first), Integer.toString(answer));
                 System.out.println("STR = " + st);
@@ -38,7 +38,7 @@ public class Test {
     }
 
     static int Pattern4(String word) { // Должно вернуть последнее число в строке
-        Pattern pattern = Pattern.compile("\\d+");
+        Pattern pattern = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
         Matcher matcher = pattern.matcher(word);
         int start = 0;
         int result = -1234567890;
@@ -56,7 +56,7 @@ public class Test {
     }
 
     static int Pattern5(String word) { // Должно вернуть первое число в строке
-        Pattern pattern = Pattern.compile("\\d+");
+        Pattern pattern = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
         Matcher matcher = pattern.matcher(word);
         int start = 0;
         int result = -1234567890;
