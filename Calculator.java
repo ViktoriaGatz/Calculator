@@ -42,11 +42,13 @@ public class Calculator {
         String s = new String(strinG);
         s = s.replaceAll(" ", "");
         if (MyDelete(s)) {
+            System.out.print("Error symbol\t");
             return answeR;
-        }
+        } else {
         Stack<String> stack = Expression(s);
         answeR = Rachet(stack);
         // System.out.println(s + " = " + answer);
+        }
         return answeR;
     }
 /*
@@ -54,7 +56,7 @@ public class Calculator {
         this.strinG = new String(c);
     }
 */
-    static Stack<String> Expression(String str) {
+    public static Stack<String> Expression(String str) {
         Stack<String> stack = new Stack<>();
         for (String ss : str.split("\\(")) {
             stack.push(ss);
@@ -62,7 +64,7 @@ public class Calculator {
         return stack;
     }
 
-    static boolean MyDelete(String str) {
+    public boolean MyDelete(String str) {
         String s = new String(str);
         s = s.replaceAll("\\d|\\+|\\*|/|\\^|-|\\(|\\)|\\s|\\.", "");
         if (s.length() == 0)
@@ -71,7 +73,7 @@ public class Calculator {
             return true;
     }
 
-    static Integer Rachet(Stack<String> stack) {
+    public static Integer Rachet(Stack<String> stack) {
         // System.out.println(stack);
         // System.out.println(stack.peek().toString());
         String st = new String(stack.peek().toString());
@@ -87,7 +89,7 @@ public class Calculator {
         return answer;
     }
 
-    static Integer Pattern2(String str) {
+    public static Integer Pattern2(String str) {
         String ss = new String(str);
         ss = ss.replaceAll("\\)", ""); // Убираем последнюю скобочку, получаем "чистое" выражение: 733+80*95
         ss =  Pattern3(ss, "\\*"); // Получаем
@@ -102,7 +104,7 @@ public class Calculator {
         return answer;
     }
 
-    static String Pattern3(String str, String c) { // String // Выполнение действий (первое - умножение)
+    public static String Pattern3(String str, String c) { // String // Выполнение действий (первое - умножение)
         String st = new String(str);
         if (contains("(.*)" + c + "(.*)", str)) { // Если строка содержит знак
             int first = -1234567890;
@@ -148,11 +150,11 @@ public class Calculator {
         return st;
     }
 
-    static boolean contains(String pattern, String content) { // contains("(.*)&&(.*)", "REMBO IUI Z&&")
+    public static boolean contains(String pattern, String content) { // contains("(.*)&&(.*)", "REMBO IUI Z&&")
         return content.matches(pattern);
     }
 
-    static String Pattern1(String str, String s) { // String s = Pattern1(ss, ".+?\\)");
+    public static String Pattern1(String str, String s) { // String s = Pattern1(ss, ".+?\\)");
         Pattern pattern = Pattern.compile(s);
         Matcher matcher = pattern.matcher(str);
         if (matcher.find()) {
@@ -161,7 +163,7 @@ public class Calculator {
         return str;
     }
 
-    static int Pattern4(String word) { // Должно вернуть последнее число в строке
+    public static int Pattern4(String word) { // Должно вернуть последнее число в строке
         Pattern pattern = Pattern.compile("\\d+"); // "[-]?[0-9]+(.[0-9]+)?"
         Matcher matcher = pattern.matcher(word);
         int start = 0;
@@ -179,7 +181,7 @@ public class Calculator {
         return result;
     }
 
-    static int Pattern5(String word) { // Должно вернуть первое число в строке
+    public static int Pattern5(String word) { // Должно вернуть первое число в строке
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(word);
         int start = 0;
@@ -197,7 +199,7 @@ public class Calculator {
         return result;
     }
 
-    static boolean equals(String str1, String str2) {
+    public static boolean equals(String str1, String str2) {
         return str1 == null ? str2 == null : str1.equals(str2);
     }
 }

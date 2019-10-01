@@ -1,6 +1,5 @@
 import java.util.*;
 
-// public class Mathematics extends Calculator {
 public class Mathematics {
     public static void main(String[] args) {
         System.out.println("CALCULATOR:");
@@ -12,7 +11,9 @@ public class Mathematics {
                 break;
             }
             //
-            Calculator v1 = new Calculator(s);
+            // Calculator v1 = new Calculator(s);
+            // System.out.println(v1.getStrinG() + " = " + v1.getAnsweR());
+            Calculator2 v1 = new Calculator2(s);
             System.out.println(v1.getStrinG() + " = " + v1.getAnsweR());
             //
         } while (!s.equals("exit"));
