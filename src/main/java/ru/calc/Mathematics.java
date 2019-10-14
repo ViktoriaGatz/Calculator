@@ -1,3 +1,5 @@
+package ru.calc;
+
 import java.util.*;
 
 public class Mathematics {

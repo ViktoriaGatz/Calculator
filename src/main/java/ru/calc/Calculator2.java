@@ -1,6 +1,7 @@
 // Наследование - inheritance
+package ru.calc;
 
-class Calculator2 extends Calculator {
+final class Calculator2 extends Calculator {
     // private String strinG;
     // private int answeR = 0;
     private int x;
@@ -10,6 +11,8 @@ class Calculator2 extends Calculator {
     }
 
     Calculator2(String c) {
+        // x = super.Pattern4(c);
+        // System.out.println("last number = " + x);
         this.setStrinG(c);
     }
 

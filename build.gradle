@@ -1,0 +1,9 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+run {
+	standardInput = System.in
+}
+application {
+	mainClassName = 'ru.calc.Mathematics'
+}

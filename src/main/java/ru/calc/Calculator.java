@@ -15,6 +15,8 @@
 
 import java.util.Scanner;
 */
+package ru.calc;
+
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
