@@ -16,10 +16,10 @@ final class Calculator2 extends Calculator {
         this.setStrinG(c);
     }
 
-    @Override // Переопределить метод из родительского класса // Необязательно?
+    // @Override // Переопределить метод из родительского класса // Необязательно?
     public boolean MyDelete(String str) {
         String s = new String(str);
-        s = s.replaceAll("\\d|\\+|\\*|/|-", "");
+        s = s.replaceAll("\\d|\\+|\\*|/|-|\\^", "");
         if (s.length() == 0)
             return false;
         else

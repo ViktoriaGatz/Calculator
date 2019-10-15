@@ -11,3 +11,5 @@ public class Test {
         System.out.println(first);
     }
 }
+
+// maven
