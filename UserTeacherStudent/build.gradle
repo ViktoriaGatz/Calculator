@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+run {
+	standardInput = System.in
+	if (project.hasProperty("appArgs")) {
+		args Eval.me(appArgs)
+	}
+}
+application {
+	mainClassName = 'ru.app.App'
+}
+
+// gradle run -PappArgs="['viki.csv']"
+
+task dateTime(type:Exec) {
+	commandLine "date"
+
+	ext.file = new File('log.dat')
+    standardOutput = new ByteArrayOutputStream()
+
+    doLast {
+        file.text = standardOutput.toString()
+    }
+}
+
+/*
+jar {
+    doLast {
+        new File("${buildDir}/libs").eachFileRecurse { file ->
+            println "TRACER: ${file.getAbsolutePath()}"
+        }
+    }
+}
+*/
