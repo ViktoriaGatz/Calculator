@@ -14,8 +14,13 @@ package ru.app;
 import ru.app.User;
 
 public class JsonParser {
-
     public User getUser(String response) {
-        return null;
+        JSONObject userJson = new JSONObject(response);
+
+        String name = userJson.getString("name");
+        String lastName = userJson.getString("lastName");
+        int id = userJson.getLong("id");
+
+        return new User(name, lastName, id);
     }
 }
