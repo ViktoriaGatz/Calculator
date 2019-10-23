@@ -11,6 +11,8 @@ git
 */
 package ru.app;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import ru.app.User;
 
 public class JsonParser {
@@ -19,7 +21,7 @@ public class JsonParser {
 
         String name = userJson.getString("name");
         String lastName = userJson.getString("lastName");
-        int id = userJson.getLong("id");
+        long id = userJson.getLong("id");
 
         return new User(name, lastName, id);
     }
