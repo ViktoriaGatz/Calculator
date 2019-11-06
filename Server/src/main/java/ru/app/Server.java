@@ -1,6 +1,14 @@
 // main сначала делаем со стороны сервера, а потом со стороны клиента
 // начать взаимодействие
 // sudo netstat -ntp найти gradle run
+
+// TCP //
+
+// строка передаётся с помощью json (jsonmapper)
+// Server:80 (80ый порт)
+// FireFox -> localhost HTTP
+// HTTPS 443 порт
+
 package ru.app;
 
 import java.io.*;
@@ -11,7 +19,7 @@ import java.net.Socket;
 public class Server {
   public static void main(String[] args) {
     try {
-      ServerSocket server = new ServerSocket(8080);
+      ServerSocket server = new ServerSocket(2019);
       Socket client = server.accept();
       InputStream inStream = client.getInputStream();
       OutputStream outStream = client.getOutputStream();
