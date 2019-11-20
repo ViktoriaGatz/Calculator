@@ -1,0 +1,103 @@
+JDBC транзакции (несколько действий в одной операции)
+ACID
+- атомарность
+- согласованность
+- изолированность (все транзакции записываются в очередь)
+- надёжность
+
+conn.setAutoCommit(false);
+conn.commit();
+conn.roollback;
+
+Замерить время вставки 1 000 элементов с помощью Insert просто
+и с setAutoCommit(false)
+
+    1) Time (замер) 1000 Insert         System.nano.time (System.nano.second)
+    2) Time (замер) 1000 вместе с транзакциями  System.nano.time (System.nano.second)
+    3) Вычислить ускорение
+    4) Попробовать все JOIN
+        5) стримы (STREAM)
+            List<Integer> lst = Arrays.asList(1, 2, 3, 4, 5);
+            List<Integer> lst1 = lst.stream().map(x->x*x).collect(Collectors.toList());
+                                    Открытие - Действие - Результат
+
+--------------------------------------------------------------------------------
+SQL содержит в себе 4 языка DML DDL TCL DCL
+--------------------------------------------------------------------------------
+
+1) DML (манипуляция с данными)
+
+SELECT INSERT DELETE UPDATE (ТОЛЬКО ЭТО МОЖНО ОТКАТЫВАТЬ!!!!!!!!!)
+
+--------------------------------------------------------------------------------
+
+2) DDL (data definition)
+
+CREATE TABLE
+DROP TABLE
+ALTER TABLE
+TRUNCATE TABLE
+
+> ALTER TABLE user;
+    1. ADD email VARCHAR(225);
+    2. DROP phone;
+    3. CHANGE email email VARCHAR(50);
+
+--------------------------------------------------------------------------------
+
+3) TCL
+
+START TRANSACTION tr1;
+COMMIT tr1;
+ROLLBACK tr1;
+
+--------------------------------------------------------------------------------
+
+4) DCL
+
+GRANT INSERT INTO univ.user (univ.*) TO boris (назначить права на таблицу user
+для boris);
+REVOKE INSERT INTO (или просто ALL) user FROM boris (забрать права);
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Создаём две таблицы:
+
+1) prise
+
+        modle   price
+        XS      599
+        XR      499
+        11      699
+
+2) connt
+
+        model  connt
+        XR      10
+        11      12
+        11PRO   16
+
+SELECT * FROM prise;
+    INSERT JOIN connt;
+        ON price.model = commt.model;
+
+Совместить таблицы, способы:
+
+1) INNER JOIN
+
+model price connt
+XR     499  10
+11     699  12
+
+2) FULL JOIN
+
+XS      599     NULL
+XR      499     10
+11      699     12
+11PRO   NULL    16
+
+3) LEFT JOIN
+4) RIGHT JOIN
+
+5) CROSS JOIN
