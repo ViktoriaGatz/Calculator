@@ -1,0 +1,48 @@
+/------------------------------------------------------------------------------/
+ЗАДАНИЕ:
+
+    1) создать JSON документацию на основе собственной аннотации (version, author, date) (вся документация хранится в json)
+
+    [{"class" : "user", "version" : "1.0"}]
+
+    2) gradle mydocumentattion
+
+    docs.oracle.com
+
+/------------------------------------------------------------------------------/
+
+РЕФЛЕКСИЯ
+
+Class myclass = User.class;
+User u1 = new User(1, "B", "700");
+Field name = u1.getClass().getDeclaredField("name"); // получить доступ даже к приватным полям
+name.setAccesible(true); // получить доступ к полю
+name.set(u1, "Ivan");
+System.out.print(u1.getName());
+// получить доступ к методу
+Method toJson = u1.getClass().getDeclarationMethod("toJson");
+toJson.setAccessible(true);
+toJson.invoke(u1);
+
+toJson.invoke(u1, {string.class ... })
+Method[] array = u1.getMehods() // вывести все методы
+u1.getClass().getName(); // вывести все классы
+
+// как доставать объекты
+
+User u2 = (User)myclass.newInstance().(User)Class.forName("User").getConstructor({String.class, Integer.class}).newInstance("Int", 22); // порадить объект
+
+// АННОТАЦИЯ
+
+@Retention(RetentionType : RUNTIME)
+
+// ИНТЕРФЕЙС
+
+@Interface MyAnnotation { public String key(); public String value() default "123"; }
+
+@MyAnnotation(key = "phone", value = "900")
+@MyAnnotation(key = "name")
+
+class User { ... }
+
+.getAnnotation
