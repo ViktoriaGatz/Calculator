@@ -25,3 +25,5 @@ service.shedule(thread, 5, TimeUnit.SECONDS);
 
 ¹ UDP C<->S send "hi", get "HI"
 ² Executors with Executors Client многопоточный убиватор, поражение потоков
+
+UDP

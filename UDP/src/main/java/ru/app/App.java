@@ -25,7 +25,7 @@ public class App {
       service.submit((socked) -> {System.out.println("HELLO")})
   }
 }
-
+// Используется редко. Расписание. Чистить временные покеты и тд, запускать что-то по времени
 public class App {
   public void main(String[] args) {
       ExecutorService service = new ExecutorService();

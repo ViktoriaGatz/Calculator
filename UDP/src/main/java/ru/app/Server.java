@@ -12,6 +12,7 @@ public class Server {
 
       while(true){
         DatagramPacket dp = new DatagramPacket(new byte[1024], 1024);
+        
         ds.receive(dp); // в случае получения данных будет заполнен dp пакет
         System.out.println(new String(dp.getData())); // можно узнать ещё порт и адрес, чтобы отправить ответ
         System.out.println(dp.getPort());

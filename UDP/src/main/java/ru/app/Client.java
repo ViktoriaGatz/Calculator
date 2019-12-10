@@ -21,7 +21,7 @@ public class Client {
       System.out.println(new String(dp.getData())); // можно узнать ещё порт и адрес, чтобы отправить ответ
       System.out.println(dp.getPort());
       System.out.println(dp.getAddress());
-      
+
     } catch (IOException e) {
       e.printStackTrace();
     }
