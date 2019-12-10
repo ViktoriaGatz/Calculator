@@ -16,11 +16,11 @@
 Class myclass = User.class;
 User u1 = new User(1, "B", "700");
 Field name = u1.getClass().getDeclaredField("name"); // получить доступ даже к приватным полям
-name.setAccesible(true); // получить доступ к полю
+name.setAccessible(true); // получить доступ к полю
 name.set(u1, "Ivan");
 System.out.print(u1.getName());
 // получить доступ к методу
-Method toJson = u1.getClass().getDeclarationMethod("toJson");
+Method toJson = u1.getClass().getDeclaredMethod("toJson");
 toJson.setAccessible(true);
 toJson.invoke(u1);
 

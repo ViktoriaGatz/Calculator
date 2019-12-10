@@ -1,0 +1,27 @@
+UDP
+Сервер
+DatagramSocket ds = new DatagramSocket (8080)
+while (true){
+DatagramPacket dp = new DatagramPacket (new byte[1024], 1024);
+ds.receive(dp);
+... print (new String (dp getData()));
+}
+Клиент
+byte[] data = "Hello".getBytes();
+InetAddress addr = InetAddress.getByName("192.168.1.3");
+DatagramPacket pack = new DatagramPacket (data.data.length.addr.8080);
+DatagramSocket ds = new DatagramSocket();
+ds.send(pack);
+
+ExecutorService service = new ExecutorService ();
+1) Executors.newFixedThreadPool(50);
+service.submit(*)
+*Лямбда выражение, threadObj, new Runnable{void run(){…}}
+2) Executors.newCachedThreadPool();
+Time brake ~5 мин
+3) Executors.newSingleThreadExecutor();
+4) Executors.newSheduledThreadPool(10);
+service.shedule(thread, 5, TimeUnit.SECONDS);
+
+¹ UDP C<->S send "hi", get "HI"
+² Executors with Executors Client многопоточный убиватор, поражение потоков

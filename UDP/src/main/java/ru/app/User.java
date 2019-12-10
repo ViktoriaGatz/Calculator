@@ -1,3 +1,4 @@
+/*
 package ru.app;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,11 +15,11 @@ public class User {
 
   @JsonProperty("Phone Number")
   private String phone;
-
+*/
   /*Джексон должен знать, в каком порядке передать поля из объекта JSON в
   конструктор. Невозможно получить доступ к именам параметров в Java с помощью
   отражения - поэтому нужноуказывать эту информацию в аннотации.*/
-
+/*
   @JsonIgnore
   private String status;
 
@@ -58,4 +59,5 @@ public class User {
     }
   }
 }
+*/
 // GP08097266

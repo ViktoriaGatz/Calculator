@@ -1,84 +1,74 @@
-// Создать лист из объектов и отправить его в файл
 package ru.app;
 
 import java.io.IOException;
-// import com.mysql.jdbc.Driver;
-// import oracle.jdbc.driver.OracleDriver;
-import java.sql.*;
-import java.util.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.*;
+// import javax.annotation.*;
 
 public class App {
   public static void main(String[] args) {
     try {
-      Connection conn = DriverManager.getConnection(
-          "jdbc:mysql://localhost:3306/userTables", "root", "");
-      Statement stmt = conn.createStatement();
-      /*
-      stmt.executeUpdate(
-          "INSERT INTO user(id, fio, phone) VALUES (2, \"Viktoria\",
-      \"89831523456\"), (3, \"Artem\", \"89831523456\");");
-    */
-      ResultSet rs = stmt.executeQuery("SELECT * FROM user;");
-      while (rs.next()) {
-        int id = rs.getInt("id");
-        String fio = rs.getString("fio");
-        String phone = rs.getString("phone");
+      User u1 = new User(1, "Viktoria", "89831208503", "student");
+      Class myclass = User.class;
+      // получить доступ к методу
+      Method toString = u1.getClass().getDeclaredMethod("toString");
+      toString.setAccessible(true);
+      toString.invoke(u1);
 
-        User user = new User(id, fio, phone, "student");
-        System.out.println(user.toString());
-        Converter converter = new Converter();
-
-        try {
-          converter.toJSON(user);
-        } catch (IOException e) {
-          System.out.println(e.getMessage());
-        }
+      // toString.invoke(u1, string.class, int.class);
+      Method[] array = myclass.getMethods(); // вывести все методы
+      for(Method arr : array) {
+        System.out.println(arr); // вывести все методы
       }
-      conn.close();
-    } catch (java.sql.SQLException e) {
-      System.out.println(e.getMessage());
-    }
+      System.out.println(u1.getClass().getName()); // вывести все классы
+      System.out.println(myclass.getClass().getName()); // вывести все классы
+
+      // как доставать объекты
+
+    //  User u2 = (User)myclass.newInstance().(User)Class.forName("User").getConstructor({String.class, Integer.class}).newInstance("Int", 22); // порадить объект
+
+
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+       e.printStackTrace();
+   }
   }
 }
 /*
-package ru.app;
-
-import java.io.IOException;
-
 public class App {
-    public static void main(String[] args) {
 
-        // objectmapper mapper = new objectmapper();
-        // В json
-        // String str = mapper.writeValutAsString(user1);
-        // Обратно
-        // List<User>user2 = mapper.readValue(str, User.class);
+   public static void main(String[] args) {
 
-        User user1 = new User(1, "Viki", "89831208504", "student");
-        System.out.println(user1.toString());
+      App cls = new App();
+      Class c = cls.getClass();
 
-        User user2 = new User(2, "Vova", "89831209888", "student");
-        System.out.println(user2.toString());
+      try {
+         // parameter type is null
+         Method m = c.getMethod("show", null);
+         System.out.println("method = " + m.toString());
+      } catch(NoSuchMethodException e) {
+         System.out.println(e.toString());
+      }
 
-        User user3 = new User(3, "Lilit", "89832999980", "student");
-        System.out.println(user3.toString());
+      try {
+         // method Long
+         Class[] cArg = new Class[1];
+         cArg[0] = Long.class;
+         Method lMethod = c.getMethod("showLong", cArg);
+         System.out.println("method = " + lMethod.toString());
+      } catch(NoSuchMethodException e) {
+         System.out.println(e.toString());
+      }
+   }
 
-        User user = new User(1, "Kira", "89839581938", "student");
-        System.out.println(user.toString());
+   public Integer show() {
+      return 1;
+   }
 
-        Converter converter = new Converter();
-        try {
-            converter.toJSON(user);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            User user1 = converter.toJavaObject();
-            System.out.println(user1.toString());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
+   public void showLong(Long l) {
+      this.l = l;
+   }
+   long l = 78655;
 }
 */
